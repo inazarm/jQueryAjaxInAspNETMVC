@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace jQueryAjaxInAsp.NETMVC.Models
+namespace jQueryAjaxInAspNETMVC.Models
 {
     using System;
     using System.Data.Entity;
