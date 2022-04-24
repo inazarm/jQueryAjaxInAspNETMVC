@@ -71,7 +71,7 @@ namespace jQueryAjaxInAsp.NETMVC.Controllers
 
                     }
                 }
-                return RedirectToAction("ViewAll");
+                return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllEmployee()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

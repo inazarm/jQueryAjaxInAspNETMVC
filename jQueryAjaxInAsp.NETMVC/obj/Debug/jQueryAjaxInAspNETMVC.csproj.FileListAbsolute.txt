@@ -80,4 +80,3 @@ C:\Users\Zab-Solution\source\repos\jQueryAjaxInAsp.NETMVC\jQueryAjaxInAsp.NETMVC
 C:\Users\Zab-Solution\source\repos\jQueryAjaxInAsp.NETMVC\jQueryAjaxInAsp.NETMVC\obj\Debug\jQueryAjaxInAspNETMVC.csproj.CopyComplete
 C:\Users\Zab-Solution\source\repos\jQueryAjaxInAsp.NETMVC\jQueryAjaxInAsp.NETMVC\obj\Debug\jQueryAjaxInAspNETMVC.dll
 C:\Users\Zab-Solution\source\repos\jQueryAjaxInAsp.NETMVC\jQueryAjaxInAsp.NETMVC\obj\Debug\jQueryAjaxInAspNETMVC.pdb
-C:\Users\Zab-Solution\source\repos\jQueryAjaxInAsp.NETMVC\jQueryAjaxInAsp.NETMVC\obj\Debug\jQueryAjaxInAspNETMVC.csproj.AssemblyReference.cache

@@ -18,8 +18,15 @@ function jQueryAjaxPost(form) {
             url: form.action,
             data: new FormData(form),
             success: function (response) {
-                $("#firstTab").html(response);
-                refreshAddNewTab($(form).attr('data-restUrl'), true);
+                if (response.success) {
+                    $("#firstTab").html(response.html);
+                    refreshAddNewTab($(form).attr('data-restUrl'), true);
+                    $.notify(response.message, "success");
+                }
+                else {
+                    //error message
+                    $.notify(response.message, "error");
+                }
             }
         }
         if ($(form).attr('enctype') == "multipart/form-data") {
@@ -31,27 +38,6 @@ function jQueryAjaxPost(form) {
     return false;
 }
 
-//function jqueryajaxpost(form) {
-//    $.validator.unobtrusive.parse(form);
-//    if ($(form).valid()) {
-//        var ajaxconfig = {
-//            type: 'post',
-//            url: form.action,
-//            data: new formdata(form),
-//            success: function (response) {
-//                $("#firsttab").html(response.html);
-//                refreshaddnewtab($(form).attr('data-resturl'), true);
-//            }
-//        }
-//        if ($(form).attr('enctype') == "multipart/form-data") {
-//            ajaxconfig["contenttype"] = false;
-//            ajaxconfig["processdata"] = false;
-//        }
-//        $.ajax(ajaxconfig);
-
-//    }
-//    return false;
-//}
 function refreshAddNewTab(resetUrl, showViewTab) {
     debugger
     $.ajax({
@@ -62,6 +48,19 @@ function refreshAddNewTab(resetUrl, showViewTab) {
             $('ul.nav.nav-tabs a:eq(1)').html('Add New');
             if (showViewTab)
                 $('ul.nav.nav-tabs a:eq(0)').tab('show');
+        }
+
+    });
+}
+
+function Edit(url) {
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (response) {
+            $("#secondTab").html(response);
+            $('ul.nav.nav-tabs a:eq(1)').html('Edit');
+            $('ul.nav.nav-tabs a:eq(1)').tab('show');
         }
 
     });
