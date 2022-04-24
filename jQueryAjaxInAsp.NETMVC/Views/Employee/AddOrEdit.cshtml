@@ -7,7 +7,7 @@
 
 <h2>Add or Edit Record</h2>
 
-@using (Html.BeginForm("AddOrEdit","Employee",FormMethod.Post,new {enctype="multipart/form-data",onSubmit="return jQueryAjaxPost(this);" }))
+@using (Html.BeginForm("AddOrEdit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data", onSubmit = "return jQueryAjaxPost(this);", data_restUrl = Url.Action("AddOrEdit", "Employee", new { id = 0 }) }))//data-resetUrl
 {
     @Html.AntiForgeryToken()
     <div class="row">

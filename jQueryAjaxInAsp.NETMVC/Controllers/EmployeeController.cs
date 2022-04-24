@@ -1,4 +1,5 @@
-﻿using jQueryAjaxInAspNETMVC.Models;
+﻿using jQueryAjaxInAspNETMVC;
+using jQueryAjaxInAspNETMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -70,8 +71,7 @@ namespace jQueryAjaxInAsp.NETMVC.Controllers
 
                     }
                 }
-                return Json("");
-                //return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllEmployee()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("ViewAll");
             }
             catch (Exception ex)
             {
