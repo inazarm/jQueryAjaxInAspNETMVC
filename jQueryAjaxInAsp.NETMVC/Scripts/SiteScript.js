@@ -1,14 +1,24 @@
-﻿function ShowImagePreview(imageUploader, previewImage) {
+﻿$(function () {
+    $("#loaderbody").addClass('hide');
+
+
+    $(document).bind('ajaxStart', function () {
+        $("#loaderbody").removeClass('hide');
+    }).bind('ajaxStop', function () {
+        $("#loaderbody").addClass('hide');
+    });
+});
+
+
+function ShowImagePreview(imageUploader, previewImage) {
     if (imageUploader.files && imageUploader.files[0]) {
-        var read = new FileReader();
-        read.onload = function (e) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
             $(previewImage).attr('src', e.target.result);
         }
-        read.readAsDataURL(imageUploader.files[0]);
-
+        reader.readAsDataURL(imageUploader.files[0]);
     }
 }
-
 
 function jQueryAjaxPost(form) {
     $.validator.unobtrusive.parse(form);
@@ -22,9 +32,10 @@ function jQueryAjaxPost(form) {
                     $("#firstTab").html(response.html);
                     refreshAddNewTab($(form).attr('data-restUrl'), true);
                     $.notify(response.message, "success");
+                    if (typeof activatejQueryTable !== 'undefined' && $.isFunction(activatejQueryTable))
+                        activatejQueryTable();
                 }
                 else {
-                    //error message
                     $.notify(response.message, "error");
                 }
             }
@@ -34,12 +45,12 @@ function jQueryAjaxPost(form) {
             ajaxConfig["processData"] = false;
         }
         $.ajax(ajaxConfig);
+
     }
     return false;
 }
 
 function refreshAddNewTab(resetUrl, showViewTab) {
-    debugger
     $.ajax({
         type: 'GET',
         url: resetUrl,
@@ -64,4 +75,26 @@ function Edit(url) {
         }
 
     });
+}
+
+function Delete(url) {
+    if (confirm('Are you sure to delete this record ?') == true) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            success: function (response) {
+                if (response.success) {
+                    $("#firstTab").html(response.html);
+                    $.notify(response.message, "warn");
+                    if (typeof activatejQueryTable !== 'undefined' && $.isFunction(activatejQueryTable))
+                        activatejQueryTable();
+                }
+                else {
+                    $.notify(response.message, "error");
+                }
+            }
+
+        });
+
+    }
 }
